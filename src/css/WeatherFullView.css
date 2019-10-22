@@ -1,0 +1,9 @@
+.weather-full-view {
+  padding: 1.5rem;
+}
+
+.weather-full-view .inner {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}

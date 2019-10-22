@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Navigation from "./components/Navigation";
-import Home from './components/Home';
-import Favorites from './components/Favorites';
+import Home from './components/pages/Home';
+import Favorites from './components/pages/Favorites';
 import './css/App.css';
 
 function App() {

@@ -16,6 +16,8 @@ import {
   REMOVE_FROM_FAVORITES
 } from '../actions/types';
 
+import { toast } from 'react-toastify';
+
 const initialState = {
   currentLocation: {
     Version: 1,
@@ -67,6 +69,8 @@ function onActionBegin(state, action) {
 }
 
 function onActionFailure(state, action) {
+  toast.error("An error occured while loading data");
+
   return {
     ...state,
     loading: false,
@@ -120,6 +124,8 @@ function onAddToFavorites(state, action) {
   newFavoriteLocations.push(action.payload.location);
   localStorage.setItem('favoriteLocations', JSON.stringify(newFavoriteLocations));
 
+  toast.success("Successfully added to favorites");
+
   return {
     ...state,
     favoriteLocations: newFavoriteLocations
@@ -129,6 +135,8 @@ function onAddToFavorites(state, action) {
 function onRemoveFromFavorites(state, action) {
   const newFavoriteLocations = state.favoriteLocations.filter(location => location.Key !== action.payload.key);
   const newFavoriteLocationsWithWeather = state.favoriteLocationsWithWeather.filter(location => location.Key !== action.payload.key);
+
+  toast.success("Successfully removed from favorites");
 
   return {
     ...state,

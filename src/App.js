@@ -5,10 +5,19 @@ import {
   Route
 } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 import Navigation from './components/Navigation';
 import Home from './components/pages/Home';
 import Favorites from './components/pages/Favorites';
 import './css/App.css';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure({
+  hideProgressBar: true,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: false
+});
 
 function App() {
   return (

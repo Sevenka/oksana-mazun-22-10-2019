@@ -14,17 +14,17 @@ import {
 const initialState = {
   currentLocation: {
     Version: 1,
-    Key: '215854',
-    Type: 'City',
+    Key: "215854",
+    Type: "City",
     Rank: 31,
-    LocalizedName: 'Tel Aviv',
+    LocalizedName: "Tel Aviv",
     Country: {
-      ID: 'IL',
-      LocalizedName: 'Israel'
+      ID: "IL",
+      LocalizedName: "Israel"
     },
     AdministrativeArea: {
-      ID: 'TA',
-      LocalizedName: 'Tel Aviv'
+      ID: "TA",
+      LocalizedName: "Tel Aviv"
     }
   },
   locationsAutocomplete: [],
@@ -81,7 +81,7 @@ function onGetFiveDaysForecastSuccess(state, action) {
   return {
     ...state,
     loading: false,
-    fiveDaysForecast: action.payload.forecast
+    fiveDaysForecast: action.payload.forecast.DailyForecasts
   };
 }
 

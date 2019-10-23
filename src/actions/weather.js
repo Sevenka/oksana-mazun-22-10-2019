@@ -60,6 +60,7 @@ export const getCurrentConditionsFailure = error => ({
 
 const apiPath = 'http://dataservice.accuweather.com/';
 const apiKey = 'lAYfXFS1MZ8XZfz7fvwNZU0L3nXN0EaR';
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
 function handleErrors(response) {
   if (!response.ok) {
@@ -68,18 +69,25 @@ function handleErrors(response) {
   return response;
 }
 
+export function onSetCurrentLocation(location) {
+  return dispatch => {
+    dispatch(setCurrentLocation(location));
+    dispatch(getFiveDaysForecast(location.Key));
+  }
+}
+
 export function getAutocompleteSearch(query) {
-  return (dispatch, getState) => {
+  return dispatch => {
     dispatch(getAutocompleteSearchBegin());
 
-    const URLSearchParams = new URLSearchParams([['apikey', apiKey], ['q', query], ['language', 'en-us']]);
-
-    return fetch(`${apiPath}/locations/v1/cities/autocomplete`, {
-      method: "GET",
+    return fetch(`${proxyurl + apiPath}/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${query}&language=en-us`, {
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
       },
-      body: URLSearchParams
+      mode: 'cors'
     })
       .then(handleErrors)
       .then(res => res.json())
@@ -87,22 +95,22 @@ export function getAutocompleteSearch(query) {
         dispatch(getAutocompleteSearchSuccess(json));
         return json;
       })
-      .catch(error => dispatch(getAutocompleteSearchFailure(error));
-  };
+      .catch(error => dispatch(getAutocompleteSearchFailure(error)));
+  }
 }
 
 export function getFiveDaysForecast(locationKey) {
   return (dispatch, getState) => {
     dispatch(getFiveDaysForecastBegin());
 
-    const URLSearchParams = new URLSearchParams([['apikey', apiKey], ['q', query], ['language', 'en-us']]);
-
-    return fetch(`${apiPath}/forecasts/v1/daily/5day/${locationKey}`, {
-      method: "GET",
+    return fetch(`${proxyurl + apiPath}/forecasts/v1/daily/5day/${locationKey}?apikey=${apiKey}&language=en-us`, {
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
       },
-      body: URLSearchParams
+      mode: 'cors'
     })
       .then(handleErrors)
       .then(res => res.json())
@@ -110,7 +118,7 @@ export function getFiveDaysForecast(locationKey) {
         dispatch(getFiveDaysForecastSuccess(json));
         return json;
       })
-      .catch(error => dispatch(getFiveDaysForecastFailure(error));
+      .catch(error => dispatch(getFiveDaysForecastFailure(error)));
   };
 }
 
@@ -118,14 +126,14 @@ export function getCurrentConditions(locationKey) {
   return (dispatch, getState) => {
     dispatch(getCurrentConditionsBegin());
 
-    const URLSearchParams = new URLSearchParams([['apikey', apiKey], ['language', 'en-us']]);
-
-    return fetch(`${apiPath}/forecasts/v1/daily/5day/${locationKey}`, {
-      method: "GET",
+    return fetch(`${proxyurl + apiPath}/forecasts/v1/daily/5day/${locationKey}?apikey=${apiKey}&language=en-us`, {
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
       },
-      body: URLSearchParams
+      mode: 'cors'
     })
       .then(handleErrors)
       .then(res => res.json())
@@ -133,6 +141,6 @@ export function getCurrentConditions(locationKey) {
         dispatch(getCurrentConditionsSuccess(json));
         return json;
       })
-      .catch(error => dispatch(getCurrentConditionsFailure(error));
+      .catch(error => dispatch(getCurrentConditionsFailure(error)));
   };
 }

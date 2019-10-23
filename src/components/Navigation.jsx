@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router";
 import { Nav } from 'react-bootstrap';
+import mainRoute from '../mainRoute';
 import '../css/Navigation.css';
 
 class Navigation extends Component {
@@ -19,10 +20,10 @@ class Navigation extends Component {
 
         <div className="links">
           <Nav.Item>
-            <Nav.Link eventKey="/">Home</Nav.Link>
+            <Nav.Link eventKey={mainRoute}>Home</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="/favorites">Favorites</Nav.Link>
+            <Nav.Link eventKey={`${mainRoute}/favorites`}>Favorites</Nav.Link>
           </Nav.Item>
         </div>
       </Nav>

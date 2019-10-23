@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import Navigation from './components/Navigation';
 import Home from './components/pages/Home';
 import Favorites from './components/pages/Favorites';
+import mainRoute from './mainRoute';
 import './css/App.css';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -26,10 +27,10 @@ function App() {
         <Navigation />
 
         <Switch>
-          <Route path="/favorites">
+          <Route path={`${mainRoute}/favorites`}>
             <Favorites />
           </Route>
-          <Route path="/">
+          <Route path={mainRoute}>
             <Home />
           </Route>
         </Switch>

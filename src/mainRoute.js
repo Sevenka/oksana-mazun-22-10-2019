@@ -1,0 +1,1 @@
+export default '/oksana-mazun-22-10-2019';

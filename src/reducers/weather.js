@@ -8,7 +8,12 @@ import {
   GET_FIVE_DAYS_FORECAST_FAILURE,
   GET_CURRENT_CONDITIONS_BEGIN,
   GET_CURRENT_CONDITIONS_SUCCESS,
-  GET_CURRENT_CONDITIONS_FAILURE
+  GET_CURRENT_CONDITIONS_FAILURE,
+  GET_MULTIPLE_CURRENT_CONDITIONS_BEGIN,
+  GET_MULTIPLE_CURRENT_CONDITIONS_SUCCESS,
+  GET_MULTIPLE_CURRENT_CONDITIONS_FAILURE,
+  ADD_TO_FAVORITES,
+  REMOVE_FROM_FAVORITES
 } from '../actions/types';
 
 const initialState = {
@@ -30,6 +35,8 @@ const initialState = {
   locationsAutocomplete: [],
   fiveDaysForecast: [],
   currentConditions: [],
+  favoriteLocations: JSON.parse(localStorage.getItem('favoriteLocations')) || [],
+  favoriteLocationsWithWeather: [],
   loading: false
 };
 
@@ -43,7 +50,12 @@ const stateFactory = {
   [GET_FIVE_DAYS_FORECAST_FAILURE]: onActionFailure,
   [GET_CURRENT_CONDITIONS_BEGIN]: onActionBegin,
   [GET_CURRENT_CONDITIONS_SUCCESS]: onGetCurrentConditionsSuccess,
-  [GET_CURRENT_CONDITIONS_FAILURE]: onActionFailure
+  [GET_CURRENT_CONDITIONS_FAILURE]: onActionFailure,
+  [GET_MULTIPLE_CURRENT_CONDITIONS_BEGIN]: onActionBegin,
+  [GET_MULTIPLE_CURRENT_CONDITIONS_SUCCESS]: onGetMultipleCurrentConditionsSuccess,
+  [GET_MULTIPLE_CURRENT_CONDITIONS_FAILURE]: onActionFailure,
+  [ADD_TO_FAVORITES]: onAddToFavorites,
+  [REMOVE_FROM_FAVORITES]: onRemoveFromFavorites
 };
 
 function onActionBegin(state, action) {
@@ -88,8 +100,40 @@ function onGetFiveDaysForecastSuccess(state, action) {
 function onGetCurrentConditionsSuccess(state, action) {
   return {
     ...state,
+    loading: false
+  };
+}
+
+function onGetMultipleCurrentConditionsSuccess(state, action) {
+  const multipleConditions = action.payload.multipleConditions;
+  const favoriteLocationsWithWeather = state.favoriteLocations.map((item, index) => ({ ...item, ...multipleConditions[index][0] }));
+
+  return {
+    ...state,
     loading: false,
-    currentConditions: action.payload.conditions
+    favoriteLocationsWithWeather
+  }
+}
+
+function onAddToFavorites(state, action) {
+  const newFavoriteLocations = state.favoriteLocations;
+  newFavoriteLocations.push(action.payload.location);
+  localStorage.setItem('favoriteLocations', JSON.stringify(newFavoriteLocations));
+
+  return {
+    ...state,
+    favoriteLocations: newFavoriteLocations
+  };
+}
+
+function onRemoveFromFavorites(state, action) {
+  const newFavoriteLocations = state.favoriteLocations.filter(location => location.Key !== action.payload.key);
+  const newFavoriteLocationsWithWeather = state.favoriteLocationsWithWeather.filter(location => location.Key !== action.payload.key);
+
+  return {
+    ...state,
+    favoriteLocations: newFavoriteLocations,
+    favoriteLocationsWithWeather: newFavoriteLocationsWithWeather
   };
 }
 

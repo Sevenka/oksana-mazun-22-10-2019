@@ -8,8 +8,13 @@ import {
   GET_FIVE_DAYS_FORECAST_FAILURE,
   GET_CURRENT_CONDITIONS_BEGIN,
   GET_CURRENT_CONDITIONS_SUCCESS,
-  GET_CURRENT_CONDITIONS_FAILURE
-} from "../actions/types";
+  GET_CURRENT_CONDITIONS_FAILURE,
+  GET_MULTIPLE_CURRENT_CONDITIONS_BEGIN,
+  GET_MULTIPLE_CURRENT_CONDITIONS_SUCCESS,
+  GET_MULTIPLE_CURRENT_CONDITIONS_FAILURE,
+  ADD_TO_FAVORITES,
+  REMOVE_FROM_FAVORITES
+} from '../actions/types';
 
 export const setCurrentLocation = (currentLocation) => ({
   type: SET_CURRENT_LOCATION,
@@ -48,7 +53,7 @@ export const getCurrentConditionsBegin = () => ({
   type: GET_CURRENT_CONDITIONS_BEGIN
 });
 
-export const getCurrentConditionsSuccess = conditions => ({
+export const getCurrentConditionsSuccess = (conditions) => ({
   type: GET_CURRENT_CONDITIONS_SUCCESS,
   payload: { conditions }
 });
@@ -58,8 +63,32 @@ export const getCurrentConditionsFailure = error => ({
   payload: { error }
 });
 
+export const getMultipleCurrentConditionsBegin = () => ({
+  type: GET_MULTIPLE_CURRENT_CONDITIONS_BEGIN
+});
+
+export const getMultipleCurrentConditionsSuccess = (multipleConditions) => ({
+  type: GET_MULTIPLE_CURRENT_CONDITIONS_SUCCESS,
+  payload: { multipleConditions }
+});
+
+export const getMultipleCurrentConditionsFailure = error => ({
+  type: GET_MULTIPLE_CURRENT_CONDITIONS_FAILURE,
+  payload: { error }
+});
+
+export const addToFavorites = (location) => ({
+  type: ADD_TO_FAVORITES,
+  payload: { location }
+});
+
+export const removeFromFavorites = (key) => ({
+  type: REMOVE_FROM_FAVORITES,
+  payload: { key }
+});
+
 const apiPath = 'http://dataservice.accuweather.com/';
-const apiKey = 'lAYfXFS1MZ8XZfz7fvwNZU0L3nXN0EaR';
+const apiKey = 'wy0QSjTQRZzPZnYtgwbYUESi6FMeIPpz';
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
 function handleErrors(response) {
@@ -126,7 +155,7 @@ export function getCurrentConditions(locationKey) {
   return (dispatch, getState) => {
     dispatch(getCurrentConditionsBegin());
 
-    return fetch(`${proxyurl + apiPath}/forecasts/v1/daily/5day/${locationKey}?apikey=${apiKey}&language=en-us`, {
+    return fetch(`${proxyurl + apiPath}/currentconditions/v1/${locationKey}?apikey=${apiKey}&language=en-us`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -143,4 +172,19 @@ export function getCurrentConditions(locationKey) {
       })
       .catch(error => dispatch(getCurrentConditionsFailure(error)));
   };
+}
+
+export function getMultipleCurrentConditions() {
+  return (dispatch, getState) => {
+    dispatch(getMultipleCurrentConditionsBegin());
+
+    return Promise.all(getState().weather.favoriteLocations.map(item => dispatch(getCurrentConditions(item.Key))))
+      .then(json => {
+        dispatch(getMultipleCurrentConditionsSuccess(json));
+        return json;
+      })
+      .catch(error => {
+        dispatch(getMultipleCurrentConditionsFailure(error))
+      })
+  }
 }

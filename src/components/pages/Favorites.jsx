@@ -1,58 +1,44 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getMultipleCurrentConditions } from '../../actions';
 import { Container, Row, Col } from 'react-bootstrap';
 import WeatherSmallView from '../WeatherSmallView';
 
-export default class Favorites extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      weathersList: [
-        {
-          id: 0,
-          title: "TelAviv",
-          degrees: 30,
-          weather: "Sunny"
-        },
-        {
-          id: 1,
-          title: "TelAviv",
-          degrees: 30,
-          weather: "Sunny"
-        },
-        {
-          id: 2,
-          title: "TelAviv",
-          degrees: 30,
-          weather: "Sunny"
-        },
-        {
-          id: 3,
-          title: "TelAviv",
-          degrees: 30,
-          weather: "Sunny"
-        },
-        {
-          id: 4,
-          title: "TelAviv",
-          degrees: 30,
-          weather: "Sunny"
-        }
-      ]
-    };
+class Favorites extends Component {
+  componentDidMount() {
+    this.props.getMultipleCurrentConditions();
   }
 
   render() {
+    const favoriteLocationsWithWeather = this.props.favoriteLocationsWithWeather.map(weatherItem => (
+      <Col key={weatherItem.Key}>
+        <WeatherSmallView
+          data={weatherItem}
+          singleCity />
+      </Col>
+    ));
+
     return (
       <Container>
-        <Row>
-          {this.state.weathersList.map(weatherItem => (
-            <Col key={weatherItem.id}>
-              <WeatherSmallView data={weatherItem} />
-            </Col>
-          ))}
+        <Row className="justify-content-md-center">
+          {favoriteLocationsWithWeather}
+          {!favoriteLocationsWithWeather.length && <h2>No favorites</h2>}
         </Row>
       </Container>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  favoriteLocations: state.weather.favoriteLocations,
+  favoriteLocationsWithWeather: state.weather.favoriteLocationsWithWeather
+});
+
+const mapDispatchToProps = {
+  getMultipleCurrentConditions
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Favorites);

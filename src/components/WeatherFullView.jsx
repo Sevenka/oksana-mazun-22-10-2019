@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  getFiveDaysForecast
+  getFiveDaysForecast,
+  addToFavorites
 } from '../actions';
 import { Card, Media, Button } from 'react-bootstrap';
 import WeatherSmallView from './WeatherSmallView';
 import '../css/WeatherFullView.css';
 
 class WeatherFullView extends Component {
+  onAddToFavorites() {
+    this.props.addToFavorites(this.props.currentLocation);
+  }
+
   componentDidMount() {
     this.props.getFiveDaysForecast(this.props.currentLocation.Key);
   }
@@ -28,12 +33,16 @@ class WeatherFullView extends Component {
               </p>
             </Media.Body>
           </Media>
-          <Button>Add to favorites</Button>
+          <Button onClick={() => this.onAddToFavorites()}>Add to favorites</Button>
         </div>
 
         <div className="inner">
           {this.props.fiveDaysForecast.map(weatherItem => (
-            <WeatherSmallView data={weatherItem} key={weatherItem.Date} />
+            <WeatherSmallView
+              data={weatherItem}
+              key={weatherItem.Date}
+              temperatureRange
+              days />
           ))}
         </div>
       </Card>
@@ -47,7 +56,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  getFiveDaysForecast
+  getFiveDaysForecast,
+  addToFavorites
 };
 
 export default connect(

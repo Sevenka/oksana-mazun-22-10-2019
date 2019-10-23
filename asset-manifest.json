@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/oksana-mazun-22-10-2019/static/css/main.5370b9ee.chunk.css",
-    "main.js": "/oksana-mazun-22-10-2019/static/js/main.670f1d22.chunk.js",
-    "main.js.map": "/oksana-mazun-22-10-2019/static/js/main.670f1d22.chunk.js.map",
+    "main.css": "/oksana-mazun-22-10-2019/static/css/main.e40dd905.chunk.css",
+    "main.js": "/oksana-mazun-22-10-2019/static/js/main.1a332df5.chunk.js",
+    "main.js.map": "/oksana-mazun-22-10-2019/static/js/main.1a332df5.chunk.js.map",
     "runtime-main.js": "/oksana-mazun-22-10-2019/static/js/runtime-main.b7eaa32f.js",
     "runtime-main.js.map": "/oksana-mazun-22-10-2019/static/js/runtime-main.b7eaa32f.js.map",
     "static/css/2.28e23568.chunk.css": "/oksana-mazun-22-10-2019/static/css/2.28e23568.chunk.css",
     "static/js/2.36353a32.chunk.js": "/oksana-mazun-22-10-2019/static/js/2.36353a32.chunk.js",
     "static/js/2.36353a32.chunk.js.map": "/oksana-mazun-22-10-2019/static/js/2.36353a32.chunk.js.map",
     "index.html": "/oksana-mazun-22-10-2019/index.html",
-    "precache-manifest.a6906950be8e2e163391dccd7412e353.js": "/oksana-mazun-22-10-2019/precache-manifest.a6906950be8e2e163391dccd7412e353.js",
+    "precache-manifest.3017c926b2905894955de9ae82b09fd4.js": "/oksana-mazun-22-10-2019/precache-manifest.3017c926b2905894955de9ae82b09fd4.js",
     "service-worker.js": "/oksana-mazun-22-10-2019/service-worker.js",
     "static/css/2.28e23568.chunk.css.map": "/oksana-mazun-22-10-2019/static/css/2.28e23568.chunk.css.map",
-    "static/css/main.5370b9ee.chunk.css.map": "/oksana-mazun-22-10-2019/static/css/main.5370b9ee.chunk.css.map"
+    "static/css/main.e40dd905.chunk.css.map": "/oksana-mazun-22-10-2019/static/css/main.e40dd905.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.b7eaa32f.js",
     "static/css/2.28e23568.chunk.css",
     "static/js/2.36353a32.chunk.js",
-    "static/css/main.5370b9ee.chunk.css",
-    "static/js/main.670f1d22.chunk.js"
+    "static/css/main.e40dd905.chunk.css",
+    "static/js/main.1a332df5.chunk.js"
   ]
 }

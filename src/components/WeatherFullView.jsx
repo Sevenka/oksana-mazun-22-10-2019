@@ -61,7 +61,7 @@ class WeatherFullView extends Component {
             <Button onClick={() => this.onAddToFavorites()}>Add to favorites</Button>}
         </div>
 
-        <div className="inner">
+        <div className="inner flex-wrap">
           {this.props.fiveDaysForecast.map(weatherItem => (
             <WeatherSmallView
               data={weatherItem}

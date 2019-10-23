@@ -46,7 +46,7 @@ class WeatherSmallView extends Component {
     }
 
     return (
-      <Card>
+      <Card className="my-2">
         <Card.Body>
           {this.props.dayName ?
           <Card.Title>{title}</Card.Title>

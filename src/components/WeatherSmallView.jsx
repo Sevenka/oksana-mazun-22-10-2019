@@ -49,13 +49,13 @@ class WeatherSmallView extends Component {
       <Card className="my-2">
         <Card.Body>
           {this.props.dayName ?
-          <Card.Title>{title}</Card.Title>
-          :
-          <Card.Link
-            href="#"
-            onClick={(e) => this.navigateFromFavorites(e, this.props.data)}>
-            {title}
-          </Card.Link>}
+            <Card.Title>{title}</Card.Title>
+            :
+            <Card.Link
+              href="#"
+              onClick={(e) => this.navigateFromFavorites(e, this.props.data)}>
+              {title}
+            </Card.Link>}
           <Card.Text>{degrees}</Card.Text>
           <Card.Text>{weatherPhrase}</Card.Text>
           {this.props.singleCity &&

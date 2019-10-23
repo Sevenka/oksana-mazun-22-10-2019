@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fc232f0572798adb2d7f83a7ea2b2ff6",
+    "revision": "bb6101bbc131bde726653978c9d70c10",
     "url": "/oksana-mazun-22-10-2019/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/oksana-mazun-22-10-2019/static/css/2.28e23568.chunk.css"
   },
   {
-    "revision": "4802f051ed64d25449a5",
+    "revision": "6b74c694166d8c3f9ab0",
     "url": "/oksana-mazun-22-10-2019/static/css/main.e40dd905.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/oksana-mazun-22-10-2019/static/js/2.36353a32.chunk.js"
   },
   {
-    "revision": "4802f051ed64d25449a5",
-    "url": "/oksana-mazun-22-10-2019/static/js/main.bcc810a3.chunk.js"
+    "revision": "6b74c694166d8c3f9ab0",
+    "url": "/oksana-mazun-22-10-2019/static/js/main.efab9467.chunk.js"
   },
   {
     "revision": "bfa52065e97837e905e5",

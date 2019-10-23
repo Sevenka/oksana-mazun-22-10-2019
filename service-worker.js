@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/oksana-mazun-22-10-2019/precache-manifest.0896fd954b215c3e33ee9615e8539622.js"
+  "/oksana-mazun-22-10-2019/precache-manifest.da298ec4edde95527dc7d9f7e3d566f7.js"
 );
 
 self.addEventListener('message', (event) => {

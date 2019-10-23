@@ -10,15 +10,39 @@ import WeatherSmallView from './WeatherSmallView';
 import '../css/WeatherFullView.css';
 
 class WeatherFullView extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLocationInFavorites: false
+    }
+  }
+
+  onAddToFavorites() {
+    this.props.addToFavorites(this.props.currentLocation);
+    this.setState({ isLocationInFavorites: true });
+  }
+
+  onRemoveFromFavorites() {
+    this.props.removeFromFavorites(this.props.currentLocation.Key);
+    this.setState({ isLocationInFavorites: false });
+  }
+
   componentDidMount() {
     this.props.getFiveDaysForecast(this.props.currentLocation.Key);
+    this.setState({ isLocationInFavorites: this.props.favoriteLocations.some(item => item.Key === this.props.currentLocation.Key) });
+  }
+
+  componentDidUpdate(prevProps) {
+    if ((this.props.currentLocation !== prevProps.currentLocation) || (this.props.favoriteLocations !== prevProps.favoriteLocations)) {
+      this.setState({ isLocationInFavorites: this.props.favoriteLocations.some(item => item.Key === this.props.currentLocation.Key) });
+    }
   }
 
   render() {
     const todaysForecast = this.props.fiveDaysForecast[0];
     const degreesMin = todaysForecast ? `${todaysForecast.Temperature.Minimum.Value}°${todaysForecast.Temperature.Minimum.Unit}` : '';
     const degreesMax = todaysForecast ? `${todaysForecast.Temperature.Maximum.Value}°${todaysForecast.Temperature.Maximum.Unit}` : '';
-    const isLocationInFavorites = this.props.favoriteLocations.some(item => item.Key === this.props.currentLocation.Key);
 
     return (
       <Card className="weather-full-view">
@@ -31,10 +55,10 @@ class WeatherFullView extends Component {
               </p>
             </Media.Body>
           </Media>
-          {isLocationInFavorites ?
-            <Button onClick={() => this.props.removeFromFavorites(this.props.currentLocation.Key)} variant="danger">Remove from favorites</Button>
+          {this.state.isLocationInFavorites ?
+            <Button onClick={() => this.onRemoveFromFavorites()} variant="danger">Remove from favorites</Button>
           :
-            <Button onClick={() => this.props.addToFavorites(this.props.currentLocation)}>Add to favorites</Button>}
+            <Button onClick={() => this.onAddToFavorites()}>Add to favorites</Button>}
         </div>
 
         <div className="inner">
@@ -42,6 +66,7 @@ class WeatherFullView extends Component {
             <WeatherSmallView
               data={weatherItem}
               key={weatherItem.Date}
+              dayName
               temperatureRange
               days />
           ))}

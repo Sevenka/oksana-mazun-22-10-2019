@@ -5,13 +5,14 @@ import {
   onSetCurrentLocation,
   removeFromFavorites
 } from '../actions';
+import mainRoute from '../mainRoute';
 import { Card, Button } from 'react-bootstrap';
 
 class WeatherSmallView extends Component {
   navigateFromFavorites(e, weatherItem) {
     e.preventDefault();
     this.props.onSetCurrentLocation(weatherItem);
-    this.props.history.push('/');
+    this.props.history.push(mainRoute);
   }
 
   getDayName() {
@@ -47,11 +48,14 @@ class WeatherSmallView extends Component {
     return (
       <Card>
         <Card.Body>
+          {this.props.dayName ?
+          <Card.Title>{title}</Card.Title>
+          :
           <Card.Link
             href="#"
             onClick={(e) => this.navigateFromFavorites(e, this.props.data)}>
             {title}
-          </Card.Link>
+          </Card.Link>}
           <Card.Text>{degrees}</Card.Text>
           <Card.Text>{weatherPhrase}</Card.Text>
           {this.props.singleCity &&

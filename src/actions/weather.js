@@ -88,7 +88,7 @@ export const removeFromFavorites = (key) => ({
 });
 
 const apiPath = 'http://dataservice.accuweather.com/';
-const apiKey = 'Vj2eJu7BgBHttJMoLKA0APRYAfzv8rEk';
+const apiKey = 'XLSdTjBfN3k6WUQAA7n6kDuou6spngOt';
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
 function handleErrors(response) {

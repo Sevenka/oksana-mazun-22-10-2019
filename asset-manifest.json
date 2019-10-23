@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/oksana-mazun-22-10-2019/static/css/main.5370b9ee.chunk.css",
+    "main.js": "/oksana-mazun-22-10-2019/static/js/main.33a57a82.chunk.js",
+    "main.js.map": "/oksana-mazun-22-10-2019/static/js/main.33a57a82.chunk.js.map",
+    "runtime-main.js": "/oksana-mazun-22-10-2019/static/js/runtime-main.b7eaa32f.js",
+    "runtime-main.js.map": "/oksana-mazun-22-10-2019/static/js/runtime-main.b7eaa32f.js.map",
+    "static/css/2.28e23568.chunk.css": "/oksana-mazun-22-10-2019/static/css/2.28e23568.chunk.css",
+    "static/js/2.36353a32.chunk.js": "/oksana-mazun-22-10-2019/static/js/2.36353a32.chunk.js",
+    "static/js/2.36353a32.chunk.js.map": "/oksana-mazun-22-10-2019/static/js/2.36353a32.chunk.js.map",
+    "index.html": "/oksana-mazun-22-10-2019/index.html",
+    "precache-manifest.85faf47c0c977dca473a54ed8406d997.js": "/oksana-mazun-22-10-2019/precache-manifest.85faf47c0c977dca473a54ed8406d997.js",
+    "service-worker.js": "/oksana-mazun-22-10-2019/service-worker.js",
+    "static/css/2.28e23568.chunk.css.map": "/oksana-mazun-22-10-2019/static/css/2.28e23568.chunk.css.map",
+    "static/css/main.5370b9ee.chunk.css.map": "/oksana-mazun-22-10-2019/static/css/main.5370b9ee.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b7eaa32f.js",
+    "static/css/2.28e23568.chunk.css",
+    "static/js/2.36353a32.chunk.js",
+    "static/css/main.5370b9ee.chunk.css",
+    "static/js/main.33a57a82.chunk.js"
+  ]
+}
